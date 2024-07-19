@@ -58,13 +58,13 @@ module.exports = {
         // console.log("Modified data ===> ", mod_data.context.session.BotUserSession.channels);
         // console.log("Stringified data ===> ", JSON.stringify(mod_data));
 
-        var overrideMessagePayload = {};
-        overrideMessagePayload = {
-                body: "{\"text\":\"Response1\"}",
-                isTemplate: true
-        };
-        data.overrideMessagePayload = overrideMessagePayload;
-        console.log("Stringified data ===> ", JSON.stringify(data));
+        // var overrideMessagePayload = {};
+        // overrideMessagePayload = {
+        //         body: "{\"text\":\"Response1\"}",
+        //         isTemplate: true
+        // };
+        // data.overrideMessagePayload = overrideMessagePayload;
+        // console.log("Stringified data ===> ", JSON.stringify(data));
 
         return sdk.sendUserMessage(data, callback);
         
