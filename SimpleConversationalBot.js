@@ -66,7 +66,7 @@ module.exports = {
         data.overrideMessagePayload = overrideMessagePayload;
         console.log("Stringified data ===> ", JSON.stringify(data));
 
-        return (sdk.sendUserMessage(data, callback)
+        return (setTimeout(sdk.sendUserMessage(data, callback), 25000)
                 .then(function () {
                     //data.message = "Response 2";
                     overrideMessagePayload = {
