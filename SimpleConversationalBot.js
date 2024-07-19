@@ -1,5 +1,5 @@
-var botId = "st-969e6350-0439-5958-a697-d239ec90c45b";
-var botName = "Bumbble Bee";
+var botId = "st-724cb5e2-dc8f-520a-abf8-7f6c232e5d36";
+var botName = "PokiMon";
 var sdk = require("./lib/sdk");
 
 /*
@@ -74,7 +74,7 @@ module.exports = {
                         isTemplate: true
                     };
                     data.overrideMessagePayload = overrideMessagePayload;
-                    return sdk.sendUserMessage(data, callback);
+                    return setTimeout(sdk.sendUserMessage(data, callback), 25000);
                 })
                );
         
