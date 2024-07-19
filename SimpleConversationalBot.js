@@ -1,5 +1,5 @@
-var botId = "st-724cb5e2-dc8f-520a-abf8-7f6c232e5d36";
-var botName = "PokiMon";
+var botId = "st-969e6350-0439-5958-a697-d239ec90c45b";
+var botName = "Bumbble Bee";
 var sdk = require("./lib/sdk");
 
 /*
@@ -66,17 +66,7 @@ module.exports = {
         data.overrideMessagePayload = overrideMessagePayload;
         console.log("Stringified data ===> ", JSON.stringify(data));
 
-        return (setTimeout(sdk.sendUserMessage(data, callback), 25000)
-                .then(function () {
-                    //data.message = "Response 2";
-                    overrideMessagePayload = {
-                        body: "{\"text\":\"Response2\"}",
-                        isTemplate: true
-                    };
-                    data.overrideMessagePayload = overrideMessagePayload;
-                    return setTimeout(sdk.sendUserMessage(data, callback), 25000);
-                })
-               );
+        return sdk.sendUserMessage(data, callback);
         
         // sdk.getSavedData(requestId)
         //     .then(() => {
