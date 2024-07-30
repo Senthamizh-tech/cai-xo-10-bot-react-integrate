@@ -66,6 +66,15 @@ module.exports = {
         // data.overrideMessagePayload = overrideMessagePayload;
         // console.log("Stringified data ===> ", JSON.stringify(data));
 
+        const resBuilderMsg = sampleJson.filter((element) => element.RESPONSE_ID === data.message)
+        console.log("resBuilderMsg ===> ", resBuilderMsg);
+        var overrideMessagePayload = {};
+        overrideMessagePayload = {
+            body: resBuilderMsg > 0 ? resBuilderMsg[0].RESPONSE_MSG : data.message,
+            isTemplate: true
+        };
+        data.overrideMessagePayload = overrideMessagePayload;
+
         return sdk.sendUserMessage(data, callback);
         
         // sdk.getSavedData(requestId)
