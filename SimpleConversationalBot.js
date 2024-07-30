@@ -68,13 +68,13 @@ module.exports = {
 
         const resBuilderMsg = sampleJson.filter((element) => element.RESPONSE_ID === data.message)
         console.log("resBuilderMsg ===> ", resBuilderMsg);
-        var overrideMessagePayload = {};
-        overrideMessagePayload = {
-            body: resBuilderMsg > 0 ? resBuilderMsg[0].RESPONSE_MSG : data.message,
-            isTemplate: true
-        };
-        data.overrideMessagePayload = overrideMessagePayload;
-
+        // var overrideMessagePayload = {};
+        // overrideMessagePayload = {
+        //     body: resBuilderMsg > 0 ? resBuilderMsg[0].RESPONSE_MSG : data.message,
+        //     isTemplate: true
+        // };
+        // data.overrideMessagePayload = overrideMessagePayload;
+        data.message = resBuilderMsg > 0 ? resBuilderMsg[0].RESPONSE_MSG : data.message;
         return sdk.sendUserMessage(data, callback);
         
         // sdk.getSavedData(requestId)
