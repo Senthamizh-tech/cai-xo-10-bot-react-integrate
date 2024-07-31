@@ -71,7 +71,7 @@ module.exports = {
         var overrideMessagePayload = {};
         overrideMessagePayload = {
             // body: resBuilderMsg > 0 ? `{\"text\":\"${resBuilderMsg[0].RESPONSE_MSG}\"}` : `{\"text\":\"${data.message}\"}`,
-            body: "{\"text\":\"Response1\"}"
+            body: "{\"text\":\"Response1\"}",
             isTemplate: true
         };
         data.overrideMessagePayload = overrideMessagePayload;
