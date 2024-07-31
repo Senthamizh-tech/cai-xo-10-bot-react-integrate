@@ -79,7 +79,7 @@ module.exports = {
 
         var mod_data = {
             ...data,
-           "message": resBuilderMsg > 0 ? resBuilderMsg[0].RESPONSE_MSG} : ${data.message},
+           "message": resBuilderMsg > 0 ? resBuilderMsg[0].RESPONSE_MSG : ${data.message},
             "context": {
                 ...data.context,
                 "custom": "Test Variable"
