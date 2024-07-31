@@ -44,61 +44,48 @@ module.exports = {
         //         return reject(err);
         //     })
         // });
-        
-        // var mod_data = {
-        //     ...data,
-        //    "message":"Spell-corrected message sent by the assistant to the user",
-        //     "context": {
-        //         ...data.context,
-        //         "custom": "Test Variable"
-        //     }
-        // }
-        // console.log("Modified data ===> ", mod_data.context.session.BotUserSession);
-        // console.log("Modified data ===> ", mod_data.context.session);
-        // console.log("Modified data ===> ", mod_data.context.session.BotUserSession.channels);
-        // console.log("Stringified data ===> ", JSON.stringify(mod_data));
 
-        // var overrideMessagePayload = {};
-        // overrideMessagePayload = {
-        //         body: "{\"text\":\"Response1\"}",
-        //         isTemplate: true
-        // };
-        // data.overrideMessagePayload = overrideMessagePayload;
-        // console.log("Stringified data ===> ", JSON.stringify(data));
+        // ***********
+        // Modify the bot response - Method 1
+        // ***********
+        // // var mod_data = {
+        // //     ...data,
+        // //    "message":"Spell-corrected message sent by the assistant to the user",
+        // //     "context": {
+        // //         ...data.context,
+        // //         "custom": "Test Variable"
+        // //     }
+        // // }
+        // // console.log("Modified data ===> ", mod_data.context.session.BotUserSession);
+        // // console.log("Modified data ===> ", mod_data.context.session);
+        // // console.log("Modified data ===> ", mod_data.context.session.BotUserSession.channels);
+        // // console.log("Stringified data ===> ", JSON.stringify(mod_data));
+        //  return sdk.sendUserMessage(mod_data, callback);
 
+        // ************
+        // Modify the bot response - Method 2 (Use overrideMessagePayload object)
+        // ************
+        // // var overrideMessagePayload = {};
+        // // overrideMessagePayload = {
+        // //         body: "{\"text\":\"Response1\"}",
+        // //         isTemplate: true
+        // // };
+        // // data.overrideMessagePayload = overrideMessagePayload;
+        // // console.log("Stringified data ===> ", JSON.stringify(data));
+        // return sdk.sendUserMessage(data, callback);
+
+        // ****************
+        // Modify Bot response with Response Builder
+        // ****************
         const resBuilderMsg = await sampleJson.filter((element) => element.RESPONSE_ID === data.message);
         console.log("resBuilderMsg ===> ", resBuilderMsg);
         var overrideMessagePayload = {};
         overrideMessagePayload = {
             body: resBuilderMsg.length > 0 ? `{\"text\":\"${resBuilderMsg[0].RESPONSE_MSG}\"}` : `{\"text\":\"${data.message}\"}`,
-            // body: "{\"text\":\"Response1\"}",
             isTemplate: true
         };
         data.overrideMessagePayload = overrideMessagePayload;
-        // data.message = resBuilderMsg > 0 ? resBuilderMsg[0].RESPONSE_MSG : data.message;
-
-        // var mod_data = {
-        //     ...data,
-        //    "message": resBuilderMsg > 0 ? resBuilderMsg[0].RESPONSE_MSG : data.message,
-        //     "context": {
-        //         ...data.context,
-        //         "custom": "Test Variable"
-        //     }
-        // }
         return sdk.sendUserMessage(data, callback);
-        
-        // sdk.getSavedData(requestId)
-        //     .then(() => {
-        //         const payload = {
-        //            "taskId":"Dialog task ID",
-        //            "nodeId":"Current node ID in the dialog flow",
-        //            "channel":"Channel name",
-        //            "context": true
-        //         }
-        //         payload.context.successful = false;
-        //         console.log("Context ===> ", data.context);
-        //         return sdk.respondToHook(payload);
-        //     });
     },
     on_agent_transfer : function(requestId, data, callback){
         return callback(null, data);
