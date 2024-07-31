@@ -66,18 +66,26 @@ module.exports = {
         // data.overrideMessagePayload = overrideMessagePayload;
         // console.log("Stringified data ===> ", JSON.stringify(data));
 
-        const resBuilderMsg = sampleJson.filter((element) => element.RESPONSE_ID === data.message)
+        const resBuilderMsg = sampleJson.filter((element) => element.RESPONSE_ID === data.message);
         console.log("resBuilderMsg ===> ", resBuilderMsg);
-        var overrideMessagePayload = {};
-        overrideMessagePayload = {
-            // body: resBuilderMsg > 0 ? `{\"text\":\"${resBuilderMsg[0].RESPONSE_MSG}\"}` : `{\"text\":\"${data.message}\"}`,
-            body: "{\"text\":\"Response1\"}",
-            isTemplate: true
-        };
-        data.overrideMessagePayload = overrideMessagePayload;
+        // var overrideMessagePayload = {};
+        // overrideMessagePayload = {
+        //     // body: resBuilderMsg > 0 ? `{\"text\":\"${resBuilderMsg[0].RESPONSE_MSG}\"}` : `{\"text\":\"${data.message}\"}`,
+        //     body: "{\"text\":\"Response1\"}",
+        //     isTemplate: true
+        // };
+        // data.overrideMessagePayload = overrideMessagePayload;
         // data.message = resBuilderMsg > 0 ? resBuilderMsg[0].RESPONSE_MSG : data.message;
-        
-        return sdk.sendUserMessage(data, callback);
+
+        var mod_data = {
+            ...data,
+           "message": resBuilderMsg > 0 ? resBuilderMsg[0].RESPONSE_MSG} : ${data.message},
+            "context": {
+                ...data.context,
+                "custom": "Test Variable"
+            }
+        }
+        return sdk.sendUserMessage(mod_data, callback);
         
         // sdk.getSavedData(requestId)
         //     .then(() => {
