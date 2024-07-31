@@ -67,7 +67,7 @@ module.exports = {
         // console.log("Stringified data ===> ", JSON.stringify(data));
 
         const resBuilderMsg = await sampleJson.filter((element) => element.RESPONSE_ID === data.message);
-        console.log("resBuilderMsg ===> ", resBuilderMsg);
+        console.log("resBuilderMsg ===> ", resBuilderMsg, resBuilderMsg > 0, `{\"text\":\"${resBuilderMsg[0].RESPONSE_MSG}\"}`);
         var overrideMessagePayload = {};
         overrideMessagePayload = {
             body: resBuilderMsg > 0 ? `{\"text\":\"${resBuilderMsg[0].RESPONSE_MSG}\"}` : `{\"text\":\"${data.message}\"}`,
